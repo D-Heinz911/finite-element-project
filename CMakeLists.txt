@@ -4,14 +4,14 @@ if(DEFINED TRIBITS_PACKAGE)
 endif()
 
 # This is the top level CMake file for the SCOREC build
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.8)
 
 project(SCOREC VERSION 2.2.2 LANGUAGES CXX C)
 
 include(cmake/bob.cmake)
 include(cmake/xsdk.cmake)
 
-option(SCOREC_ENABLE_CXX11 "enable compilation with c++11 support" NO)
+option(SCOREC_ENABLE_CXX11 "enable compilation with c++11 support" ON)
 
 option(USE_XSDK_DEFAULTS "enable the XDSK v0.3.0 default configuration" NO)
 
@@ -29,7 +29,7 @@ if(NOT USE_XSDK_DEFAULTS)
   bob_end_cxx_flags()
   set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS}")
   if(SCOREC_ENABLE_CXX11)
-    bob_cxx11_flags()
+    bob_cxx11_std()
   endif()
 endif()
 message(STATUS "CMAKE_CXX_FLAGS = ${CMAKE_CXX_FLAGS}")
